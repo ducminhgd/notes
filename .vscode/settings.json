@@ -1,0 +1,8 @@
+{
+    "foam.graph.style": {
+        "node": {
+            "go": "cyan",
+            "architecture": "green",
+        }
+    }
+}
