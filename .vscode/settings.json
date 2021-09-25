@@ -3,6 +3,7 @@
         "node": {
             "go": "cyan",
             "architecture": "green",
+            "should-read": "orange",
         }
     }
 }
