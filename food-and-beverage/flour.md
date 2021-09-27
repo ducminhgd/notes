@@ -1,3 +1,6 @@
+---
+type: food-and-beverage
+---
 # Flour
 
 ## Wheat

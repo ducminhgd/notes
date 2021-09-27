@@ -3,7 +3,75 @@ type: go
 ---
 # [[Go]] common mistakes
 
-[[Sources]]:
+- [[[Go]] common mistakes](#go-common-mistakes)
+  - [Beginner](#beginner)
+    - [Opening Brace Can't Be Placed on a Separate Line](#opening-brace-cant-be-placed-on-a-separate-line)
+    - [Unused variables](#unused-variables)
+    - [Unused imports](#unused-imports)
+    - [Short Variable Declarations Can Be Used Only Inside Functions](#short-variable-declarations-can-be-used-only-inside-functions)
+    - [Redeclaring Variables Using Short Variable Declarations](#redeclaring-variables-using-short-variable-declarations)
+    - [Can't Use Short Variable Declarations to Set Field Values](#cant-use-short-variable-declarations-to-set-field-values)
+    - [Accidental Variable Shadowing](#accidental-variable-shadowing)
+    - [Can't Use [[nil]] to Initialize a Variable Without an Explicit Type](#cant-use-nil-to-initialize-a-variable-without-an-explicit-type)
+    - [Using [[nil]] [[Slice]] and [[Map]]](#using-nil-slice-and-map)
+    - [[[Map]] Capacity](#map-capacity)
+    - [Strings Can't Be "nil"](#strings-cant-be-nil)
+    - [Unexpected Values in [[Slice]] and [[Array]] "range" Clauses](#unexpected-values-in-slice-and-array-range-clauses)
+    - [[[String]]s Are [[Immutable]]](#strings-are-immutable)
+    - [Conversions Between [[String]]s and [[Byte]] Slices](#conversions-between-strings-and-byte-slices)
+    - [[[String]]s and Index Operator](#strings-and-index-operator)
+    - [[[String]]s Are Not Always [[UTF8]] Text](#strings-are-not-always-utf8-text)
+    - [[[String]] Length](#string-length)
+    - [Missing Comma In Multi-Line [[Slice]], [[Array]], and [[Map]] Literals](#missing-comma-in-multi-line-slice-array-and-map-literals)
+    - [`log.Fatal` and `log.Panic` Do More Than Log](#logfatal-and-logpanic-do-more-than-log)
+    - [Built-in Data Structure Operations Are Not [[Sync]]hronized](#built-in-data-structure-operations-are-not-synchronized)
+    - [Iteration Values For [[String]]s in "range" Clauses](#iteration-values-for-strings-in-range-clauses)
+    - [Iterating Through a [[Map]] Using a "for range" Clause](#iterating-through-a-map-using-a-for-range-clause)
+    - [Fallthrough Behavior in "[[switch]]" Statements](#fallthrough-behavior-in-switch-statements)
+    - [Increments and Decrements](#increments-and-decrements)
+    - [[[Bitwise]] [[NOT Operator]]](#bitwise-not-operator)
+    - [Operator Precedence Differences](#operator-precedence-differences)
+    - [Unexported Structure Fields Are Not Encoded](#unexported-structure-fields-are-not-encoded)
+    - [App Exits With Active Goroutines](#app-exits-with-active-goroutines)
+    - [Sending to an [[Unbuffered]] [[Channel]] Returns As Soon As the Target Receiver Is Ready](#sending-to-an-unbuffered-channel-returns-as-soon-as-the-target-receiver-is-ready)
+    - [Sending to an Closed [[Channel]] Causes a [[Panic]]](#sending-to-an-closed-channel-causes-a-panic)
+    - [Using "[[nil]]" [[Channel]]s](#using-nil-channels)
+  - [Intermediate](#intermediate)
+    - [Closing [[HTTP]] Response Body](#closing-http-response-body)
+    - [Closing [[HTTP]] Connections](#closing-http-connections)
+    - [[[JSON]] Encoder Adds a [[Newline]] Character](#json-encoder-adds-a-newline-character)
+    - [[[JSON]] Package Escapes Special [[HTML]] Characters in Keys and String Values](#json-package-escapes-special-html-characters-in-keys-and-string-values)
+    - [[[Unmarshal]]ling [[JSON]] Numbers into Interface Values](#unmarshalling-json-numbers-into-interface-values)
+    - [[[JSON]] String Values Will Not Be Ok with Hex or Other non-[[UTF8]] Escape Sequences](#json-string-values-will-not-be-ok-with-hex-or-other-non-utf8-escape-sequences)
+    - [Comparing [[Struct]]s, [[Array]]s, [[Slice]]s, and [[Map]]s](#comparing-structs-arrays-slices-and-maps)
+    - [Recovering From a [[Panic]]](#recovering-from-a-panic)
+    - [Updating and Referencing Item Values in Slice, Array, and Map "range" Clauses](#updating-and-referencing-item-values-in-slice-array-and-map-range-clauses)
+    - ["Hidden" Data in [[Slice]]s](#hidden-data-in-slices)
+    - [Slice Data "Corruption"](#slice-data-corruption)
+    - ["Stale" Slices](#stale-slices)
+    - [Type Declarations and Methods](#type-declarations-and-methods)
+    - [Breaking Out of "for [[switch]]" and "for [[select]]" Code Blocks](#breaking-out-of-for-switch-and-for-select-code-blocks)
+    - [Iteration Variables and Closures in "for" Statements](#iteration-variables-and-closures-in-for-statements)
+    - [Deferred Function Call Argument Evaluation](#deferred-function-call-argument-evaluation)
+    - [Deferred Function Call Execution](#deferred-function-call-execution)
+    - [Failed [[Type]] [[Assertion]]s](#failed-type-assertions)
+    - [Blocked [[Goroutine]]s and Resource [[Leak]]s](#blocked-goroutines-and-resource-leaks)
+    - [Same [[Address]] for Different Zero-sized Variables](#same-address-for-different-zero-sized-variables)
+    - [The First Use of [[iota]] Doesn't Always Start with Zero](#the-first-use-of-iota-doesnt-always-start-with-zero)
+  - [Advanced](#advanced)
+    - [Using [[Pointer]] Receiver Methods On Value Instances](#using-pointer-receiver-methods-on-value-instances)
+    - [Updating [[Map]] Value Fields](#updating-map-value-fields)
+    - [[[nil]] Interfaces and nil Interfaces Values](#nil-interfaces-and-nil-interfaces-values)
+    - [[[Stack]] and [[Heap]] Variables](#stack-and-heap-variables)
+    - [[[GOMAXPROCS]], [[Concurrency]], and [[Parallelism]]](#gomaxprocs-concurrency-and-parallelism)
+    - [Read and Write Operation Reordering](#read-and-write-operation-reordering)
+    - [[[Preemptive]] Scheduling](#preemptive-scheduling)
+  - [[[Cgo]]](#cgo)
+    - [Import C and Multiline Import Blocks](#import-c-and-multiline-import-blocks)
+    - [No blank lines Between Import C and [[Cgo]] Comments](#no-blank-lines-between-import-c-and-cgo-comments)
+    - [Can't Call C Functions with Variable Arguments](#cant-call-c-functions-with-variable-arguments)
+
+## [[Sources]]:
 - [50 Shades of Go: Traps, Gotchas, and Common Mistakes for New Golang Devs](http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/)
 
 ## Beginner
@@ -1835,5 +1903,7 @@ func main() {
 ```
 
 [//begin]: # "Autogenerated link references for markdown compatibility"
+[Go]: go "Go"
+[Array]: array "Array"
 [Sources]: sources "Sources"
 [//end]: # "Autogenerated link references"

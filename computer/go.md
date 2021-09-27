@@ -174,6 +174,47 @@ for v, ok := <- c; ok ; v, ok = <- c {
 
   **Maps, like channels, but unlike slices, are just pointers to `runtime` types**
 
+## [[Logging]]
+
+- With `log` package:
+  Go logger [flags](https://pkg.go.dev/log#pkg-constants)
+
+  Using `log.SetFlags(log.LstdFlags | log.Lshortfile | log.Lmicroseconds)`
+
+- With `runtime.Caller`
+
+    ```go
+    func HandleError(err error) (b bool) {
+        if err != nil {
+            // notice that we're using 1, so it will actually log where
+            // the error happened, 0 = this function, we don't want that.
+            _, fn, line, _ := runtime.Caller(1)
+            log.Printf("[error] %s:%d %v", fn, line, err)
+            b = true
+        }
+        return
+    }
+
+    //this logs the function name as well.
+    func FancyHandleError(err error) (b bool) {
+        if err != nil {
+            // notice that we're using 1, so it will actually log the where
+            // the error happened, 0 = this function, we don't want that.
+            pc, fn, line, _ := runtime.Caller(1)
+
+            log.Printf("[error] in %s[%s:%d] %v", runtime.FuncForPC(pc).Name(), fn, line, err)
+            b = true
+        }
+        return
+    }
+
+    func main() {
+        if FancyHandleError(fmt.Errorf("it's the end of the world")) {
+            log.Print("stuff")
+        }
+    }
+    ```
+
 ## Go vs other languages
 
 - [[Rust]] will almost always beat Go in run-time benchmarks due to its fine-grained control over how threads behave and how resources are shared between threads. [Link](https://www.getclockwise.com/blog/rust-vs-go)
