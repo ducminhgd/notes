@@ -98,6 +98,8 @@ function _multiply(uint a, uint b) private pure returns (uint) {
 
 In most programming languages, looping over large data sets is expensive. But in Solidity, this is way cheaper than using `storage` if it's in an external `view` function, since `view` functions don't cost your users any gas. (And gas costs your users real money!).
 
+## Payable and Withdraw
+
 `payable` is a special type of function, allows function to receive [[Ether]]
 
 ## Function visibility

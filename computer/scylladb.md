@@ -2,6 +2,8 @@
 
 ScyllaDB uses [[CQL]] ([[Apache]] [[Cassandra]] Query Language)
 
+[Best practices](https://docs.scylladb.com/operating-scylla/procedures/tips/)
+
 ## Getting started
 
 ### [System requirements](https://docs.scylladb.com/getting-started/system-requirements/)
@@ -59,3 +61,11 @@ On Ubuntu edit `/etc/default/scylla-server`, and add `--smp 2 --overprovisioned`
 On Red Hat / CentOS edit `/etc/sysconfig/scylla-server`, and add `--smp 2 --overprovisioned` to restrict Scylla to 2 logical cores.
 
 If starting Scylla from the command line, simply append `--smp 2 --overprovisioned` to your command line.
+
+### Scylla configuration
+
+| Installed location                                                                   | Description                    |
+| ------------------------------------------------------------------------------------ | ------------------------------ |
+| `/etc/default/scylla-server` (Ubuntu/Debian) `/etc/sysconfig/scylla-server` (others) | Server startup options         |
+| `/etc/scylla/scylla.yaml`                                                            | Main Scylla configuration file |
+| `/etc/scylla/cassandra-rackdc.properties`                                            | Rack & dc configuration file   |
