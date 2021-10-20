@@ -86,6 +86,10 @@ So in this case we could declare it as a `view` function, meaning it's only view
 function sayHello() public view returns (string memory) {}
 ```
 
+```python
+
+```
+
 Solidity also contains pure functions, which means you're not even accessing any data in the app. Consider the following:
 
 ```javascript
@@ -101,6 +105,21 @@ In most programming languages, looping over large data sets is expensive. But in
 ## Payable and Withdraw
 
 `payable` is a special type of function, allows function to receive [[Ether]]
+
+After you send Ether to a contract, it gets stored in the contract's Ethereum account, and it will be trapped there — unless you add a function to withdraw the Ether from the contract.
+
+You can write a function to withdraw Ether from the contract as follows:
+
+```javascript
+contract GetPaid is Ownable {
+  function withdraw() external onlyOwner {
+    address payable _owner = address(uint160(owner()));
+    _owner.transfer(address(this).balance);
+  }
+}
+```
+
+It is important to note that you cannot transfer Ether to an address unless that address is of type `address payable`. But the `_owner` variable is of type `uint160`, meaning that we must explicitly cast it to `address payable`.
 
 ## Function visibility
 
@@ -182,3 +201,33 @@ function driveCar(uint _userId) public olderThan(16, _userId) {
 The variable `now` will return the current unix timestamp of the latest block (the number of seconds that have passed since January 1st 1970). The unix time as I write this is `1515527488`.
 
 Solidity also contains the time units `seconds`, `minutes`, `hours`, `days`, `weeks` and `years`. These will convert to a `uint` of the number of seconds in that length of time. So 1 minutes is 60, 1 hours is 3600 (60 seconds x 60 minutes), 1 days is 86400 (24 hours x 60 minutes x 60 seconds), etc.
+
+## Random Numbers
+
+So how do we generate random numbers in Solidity? The real answer here is, you can't. Well, at least you can't do it safely.
+
+The best source of randomness we have in Solidity is the `keccak256` hash function. We could do something like the following to generate a random number:
+
+```javascript
+// Generate a random number between 1 and 100:
+uint randNonce = 0;
+uint random = uint(keccak256(abi.encodePacked(now, msg.sender, randNonce))) % 100;
+randNonce++;
+uint random2 = uint(keccak256(abi.encodePacked(now, msg.sender, randNonce))) % 100;
+```
+
+What this would do is take the timestamp of `now`, the `msg.sender`, and an incrementing `nonce` (a number that is only ever used once, so we don't run the same hash function with the same input parameters twice).
+
+It would then "pack" the inputs and use `keccak` to convert them to a random hash. Next, it would convert that hash to a `uint`, and then use `% 100` to take only the last 2 digits. This will give us a totally random number between 0 and 99.
+
+**This method is vulnerable to attack by a dishonest node**
+
+In Ethereum, when you call a function on a contract, you broadcast it to a node or nodes on the network as a [[transaction]]. The nodes on the network then collect a bunch of transactions, try to be the first to solve a computationally-intensive mathematical problem as a "Proof of Work", and then publish that group of transactions along with their Proof of Work (PoW) as a **block** to the rest of the network.
+
+Once a node has solved the PoW, the other nodes stop trying to solve the PoW, verify that the other node's list of transactions are valid, and then accept the block and move on to trying to solve the next block.
+
+This makes our random number function exploitable.
+
+Let's say we had a coin flip contract — heads you double your money, tails you lose everything. Let's say it used the above random function to determine heads or tails. (`random >= 50` is heads, `random < 50` is tails).
+
+If I were running a node, I could publish a transaction only to my own node and not share it. I could then run the coin flip function to see if I won — and if I lost, choose not to include that transaction in the next block I'm solving. I could keep doing this indefinitely until I finally won the coin flip and solved the next block, and profit.
