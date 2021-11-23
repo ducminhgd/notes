@@ -16,10 +16,10 @@ Using [4+1 architectural view model](https://en.wikipedia.org/wiki/4%2B1_archite
 - *Process view* - The components at runtime. Each element is a process, and the relations between processes represent interprocess communication.
 - *Deployment* - How the processes are mapped to machines. The elements in this view consist of (physical or virtual) machines and the processes. The relations between machines represent networking. This view also describes the relationship between processes and machines.
 
-- [[Decompose by business capability]]
-- [[Decompose by subdomain]]
-- [[Self-contained Service]]
-- [[Service per team]]
+- [[Decompose by business capability]] [read more](decompose-by-business-capability.md)
+- [[Decompose by subdomain]] [read more](decompose-by-subdomain.md)
+- [[Self-contained Service]] [read more](self-contained-service.md)
+- [[Service per team]] [read more](service-per-team.md)
 
 ### Data patterns
 
