@@ -23,7 +23,7 @@ Arrays have their place—they are a good representation of a transformation mat
 
 A slice is a data structure describing a contiguous section of an array stored separately from the slice variable itself. *A slice is not an array*. A slice *describes* a piece of an array.
 
-It’s important to understand that even though a slice contains a pointer, it is itself a value. Under the covers, it is a struct value holding a *pointer* and a length. *It is not a pointer to a struct*.
+It's important to understand that even though a slice contains a pointer, it is itself a value. Under the covers, it is a struct value holding a *pointer* and a length. *It is not a pointer to a struct*.
 
 ```go
 type sliceHeader struct {
@@ -168,7 +168,7 @@ for v, ok := <- c; ok ; v, ok = <- c {
   }
   ```
 
-  If maps are pointers, shouldn’t they be *map[key]value?
+  If maps are pointers, shouldn't they be *map[key]value?
 
   > "In the very early days what we call maps now were written as pointers, so you wrote *map[int]int. We moved away from that when we realized that no one ever wrote `map` without writing `*map`." - Ian Taylor
 

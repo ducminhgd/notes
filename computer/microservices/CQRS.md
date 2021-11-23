@@ -18,7 +18,7 @@ Define a view database, which is a read-only replica that is designed to support
 
 ## Examples
 
-- My book’s FTGO example application has the `Order History Service`, which implements this pattern.
+- My book's FTGO example application has the `Order History Service`, which implements this pattern.
 - There are [several Eventuate-based example applications](http://eventuate.io/exampleapps.html) that illustrate how to use this pattern.
 
 ## Resulting context

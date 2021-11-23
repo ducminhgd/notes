@@ -8,18 +8,18 @@ subgroup: Database architecture
 
 ## Context
 
-Let’s imagine you are developing an online store application using the [[Microservice architecture pattern]]. Most services need to persist data in some kind of database. For example, the `Order Service` stores information about orders and the `Customer Service` stores information about customers.
+Let's imagine you are developing an online store application using the [[Microservice architecture]] pattern. Most services need to persist data in some kind of database. For example, the `Order Service` stores information about orders and the `Customer Service` stores information about customers.
 
 ![](customersandorders.png)
 
 ## Problem
 
-What’s the database architecture in a microservices application?
+What's the database architecture in a microservices application?
 
 ## Forces
 
 - Services must be loosely coupled so that they can be developed, deployed and scaled independently
-- Some business transactions must enforce invariants that span multiple services. For example, the `Place Order` use case must verify that a new Order will not exceed the customer’s credit limit. Other business transactions, must update data owned by multiple services.
+- Some business transactions must enforce invariants that span multiple services. For example, the `Place Order` use case must verify that a new Order will not exceed the customer's credit limit. Other business transactions, must update data owned by multiple services.
 - Some business transactions need to query data that is owned by multiple services. For example, the `View Available Credit` use must query the Customer to find the `creditLimit` and Orders to calculate the total amount of the open orders.
 - Some queries must join data that is owned by multiple services. For example, finding customers in a particular region and their recent orders requires a join between customers and orders.
 - Databases must sometimes be replicated and sharded in order to scale. See the [Scale Cube](https://microservices.io/articles/scalecube.html).
@@ -31,7 +31,7 @@ Use a (single) database that is shared by multiple services. Each service freely
 
 ## Example
 
-The `OrderService` and `CustomerService` freely access each other’s tables. For example, the `OrderService` can use the following [[ACID]] transaction ensure that a new order will not violate the customer’s credit limit.
+The `OrderService` and `CustomerService` freely access each other's tables. For example, the `OrderService` can use the following [[ACID]] transaction ensure that a new order will not violate the customer's credit limit.
 
 ```sql
 BEGIN TRANSACTION

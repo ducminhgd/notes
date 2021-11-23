@@ -16,7 +16,7 @@ In [[UNIX-like]] systems, the SIGTERM signal is used for terminating a program. 
 
 The SIGTERM can also be referred as soft kill because the process that receives the SIGTERM signal may choose to ignore it.
 
-In other words, it’s the polite way of killing a process.
+In other words, it's the polite way of killing a process.
 
 ```bash
 kill <process_id>

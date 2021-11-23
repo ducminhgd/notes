@@ -3,7 +3,7 @@
 ## Chief Technology Officer ([[CTO]])
 
 CTO is an executive role:
-- focus on technology vision and “whats next”
+- focus on technology vision and "whats next"
 - communicates vision / confidence to external stakeholders
 - plans technology direction based on business plans and market trends
 - decides high-level strategy
@@ -49,4 +49,4 @@ Some ways to evaluate success of Head of Engineering:
 - Are deliveries coming out on spec, on time and on budget?
 - Are the services running reliably?
 
-> The relationship between CTO and Head of Engineering is symbiotic. Virtually all of their activities may be overlapping. It is important to have some success criteria for each role, however, these roles do evolve and overlap over time. “people management” on its own is not a thing if you do not have the right strategy, processes, technology and product in place. Building a healthy engineering organization is a collaboration.
+> The relationship between CTO and Head of Engineering is symbiotic. Virtually all of their activities may be overlapping. It is important to have some success criteria for each role, however, these roles do evolve and overlap over time. "people management" on its own is not a thing if you do not have the right strategy, processes, technology and product in place. Building a healthy engineering organization is a collaboration.

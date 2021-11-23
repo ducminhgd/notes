@@ -36,9 +36,9 @@ Scylla requires a fix to the XFS append introduced in kernel 3.15 (back-ported t
 
 #### Memory
 
-The most critical resource that Scylla consumes is memory. By default, when Scylla starts up, it inspects the node’s hardware configuration and claims all memory to itself, leaving some reserve for the operating system (OS). This is in contrast to most open-source databases that leave most memory for the OS, but is similar to most commercial databases.
+The most critical resource that Scylla consumes is memory. By default, when Scylla starts up, it inspects the node's hardware configuration and claims all memory to itself, leaving some reserve for the operating system (OS). This is in contrast to most open-source databases that leave most memory for the OS, but is similar to most commercial databases.
 
-In a shared environment, particularly on a desktop or laptop, gobbling up all the machine’s memory can reduce the user experience, so Scylla allows reducing its memory usage to a given quantity.
+In a shared environment, particularly on a desktop or laptop, gobbling up all the machine's memory can reduce the user experience, so Scylla allows reducing its memory usage to a given quantity.
 
 On Ubuntu, open a terminal and edit `/etc/default/scylla-server`, and add `--memory 2G to` restrict Scylla to 2 gigabytes of RAM.
 

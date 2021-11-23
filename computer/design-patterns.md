@@ -30,4 +30,4 @@ Microservices architecture consists of separately deployed services, where each 
 
 (or [[Cloud architecture pattern]])
 
-The main idea behind the space-based pattern is the distributed shared memory to mitigate issues that frequently occur at the database level. The assumption is that by processing most of operations using in-memory data we can avoid extra operations in the database, thus any future problems that may evolve from there (for example, if your user activity data entity has changed, you don’t need to change a bunch of code persisting to & retrieving that data from the DB).
+The main idea behind the space-based pattern is the distributed shared memory to mitigate issues that frequently occur at the database level. The assumption is that by processing most of operations using in-memory data we can avoid extra operations in the database, thus any future problems that may evolve from there (for example, if your user activity data entity has changed, you don't need to change a bunch of code persisting to & retrieving that data from the DB).

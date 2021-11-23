@@ -18,29 +18,29 @@ Using [4+1 architectural view model](https://en.wikipedia.org/wiki/4%2B1_archite
 - *Process view* - The components at runtime. Each element is a process, and the relations between processes represent interprocess communication.
 - *Deployment* - How the processes are mapped to machines. The elements in this view consist of (physical or virtual) machines and the processes. The relations between machines represent networking. This view also describes the relationship between processes and machines.
 
-- [[Decompose by business capability]] [read more](Decompose%20by%20business%20capability.md)
-- [[Decompose by subdomain]] [read more](Decompose%20by%20subdomain.md)
-- [[Self-contained Service]] [read more](Self-contained%20Service.md)
-- [[Service per team]] [read more](Service%20per%20team.md)
+- [[Decompose by business capability]] [read more](decompose-by-business-capability.md)
+- [[Decompose by subdomain]] [read more](decompose-by-subdomain.md)
+- [[Self-contained Service]] [read more](self-contained-service.md)
+- [[Service per team]] [read more](service-per-team.md)
 
 ### Data patterns
 
 #### Database architecture
 
-- [[Shared database]] [read more](Shared%20database.md)
-- [[Database per Service]] [read more](Database%20per%20Service.md)
+- [[Shared database]] [read more](shared-database.md)
+- [[Database per Service]] [read more](database-per-service.md)
 
 #### Querying
 
-- [[API Composition]] [read more](API%20Composition.md)
-- [[CQRS]] [read more](CQRS.md)
+- [[API Composition]] [read more](api-composition.md)
+- [[CQRS]] [read more](cqrs.md)
 
 #### Maintaining data consistency
 
 - Aggregate
-- Saga
-- Event sourcing
-- Domain event
+- [[Saga]] [read more](Saga.md)
+- [[Event sourcing]] [read more](event-sourcing.md)
+- [[Domain event]] [read more](domain-event.md)
 
 ### Testing
 

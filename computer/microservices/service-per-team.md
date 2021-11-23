@@ -27,7 +27,7 @@ What's the relationship between teams and services?
 
 - A team should be small, e.g. 5-9 people
 - A team should be autonomous and loosely coupled
-- The size and complexity of the team’s code base must not exceed the team’s cognitive capacity.
+- The size and complexity of the team's code base must not exceed the team's cognitive capacity.
 - Finer-grained service decomposition improves *-ilities* including maintainability, testability, deployability
 - Finer-grained service decomposition adds complexity
 

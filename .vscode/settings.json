@@ -5,6 +5,7 @@
             "architecture": "green",
             "should-read": "orange",
             "food-and-beverage": "yellow",
+            "microservices": "red",
         }
     }
 }
