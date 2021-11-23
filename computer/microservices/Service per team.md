@@ -1,9 +1,9 @@
 ---
 type: microservices
+layer: Application patterns
+group: Decomposition
 ---
 # Service per team
-
-*I noted by the follow by [microservices.io](https://microservices.io/patterns/decomposition/service-per-team.html), just in case the website cannot be visited anymore.*
 
 ## Context
 

@@ -1,9 +1,9 @@
 ---
 type: microservices
+layer: Application patterns
+group: Decomposition
 ---
 # Self-contained service
-
-*I noted by the follow by [microservices.io](https://microservices.io/patterns/decomposition/self-contained-service.html), just in case the website cannot be visited anymore.*
 
 ## Context
 
@@ -27,7 +27,7 @@ A key benefit of this approach is that it improves availability. The `Order Serv
 
 ## Problem
 
-How should a service collaborate with other services when handling a synchronous request?
+How should a service collaborate with other services when handling a [[synchronous]] request?
 
 ## Forces
 

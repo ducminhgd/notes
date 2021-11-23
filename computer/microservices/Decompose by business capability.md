@@ -1,9 +1,9 @@
 ---
 type: microservices
+layer: Application patterns
+group: Decomposition
 ---
 # Decompose by business capability
-
-*I noted by the follow by [microservices.io](https://microservices.io/patterns/decomposition/decompose-by-business-capability.html), just in case the website cannot be visited anymore.*
 
 ## Context
 
@@ -23,7 +23,7 @@ The application also be decomposed in a way so that most new and changed require
 
 ## Problem
 
-[[How to decompose an application into services?]]
+How to decompose an application into services?
 
 ## Forces
 

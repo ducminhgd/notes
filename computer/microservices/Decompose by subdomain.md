@@ -1,10 +1,9 @@
 ---
 type: microservices
+layer: Application patterns
+group: Decomposition
 ---
 # Decompose by subdomain
-
-*I noted by the follow by [microservices.io](https://microservices.io/patterns/decomposition/decompose-by-subdomain.html), just in case the website cannot be visited anymore.*
-
 
 ## Context
 
