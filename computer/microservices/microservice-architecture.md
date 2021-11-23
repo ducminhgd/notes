@@ -1,4 +1,7 @@
-# Microservices
+---
+type: microservices
+---
+# Microservice architecture
 
 ![Microservice Pattern Language by microservice.io](https://microservices.io/i/MicroservicePatternLanguage.jpg)
 
@@ -6,10 +9,17 @@
 
 ### Decomposition
 
-- Decompose by business capability
-- Decompose by subdomain
-- Self-contained Service
-- Service per team
+Using [4+1 architectural view model](https://en.wikipedia.org/wiki/4%2B1_architectural_view_model) to decide how to decompose services. These notes below are from **Microservices patterns** of **Chris Richarson*.
+
+- *Logical view* - The software elements that are created by developers. In object-oriented languages, these elements are classes and packages. The relations between them are the relationships  between classes and packages, including inheritance, associations, and depends-on.
+- *Implementation view* - The output of the build system. This view consists of modules, which represent packaged code, and components, which are executable or deployable units consisting of one or more modules. In Java, a module is a JAR file, and a component is typically a WAR file or an executable JAR file. The relations between them include dependency relationships between modules and composition relationships between components and modules.
+- *Process view* - The components at runtime. Each element is a process, and the relations between processes represent interprocess communication.
+- *Deployment* - How the processes are mapped to machines. The elements in this view consist of (physical or virtual) machines and the processes. The relations between machines represent networking. This view also describes the relationship between processes and machines.
+
+- [[Decompose by business capability]]
+- [[Decompose by subdomain]]
+- [[Self-contained Service]]
+- [[Service per team]]
 
 ### Data patterns
 
