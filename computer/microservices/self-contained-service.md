@@ -33,7 +33,7 @@ How should a service collaborate with other services when handling a synchronous
 
 - The microservice architecture often distributes the responsibility of handling a request amongst multiple services
 - An operation is typically required to be highly available with a low response time
-- The availability of an operation is the product of the availabilities of the services that are invoked while handling a request: $serviceAvailability^numberOfSynchronouslyCollaboratingServices$
+- The availability of an operation is the product of the availabilities of the services that are invoked while handling a request: ![serviceAvailability^{numberOfSynchronouslyCollaboratingServices}](https://render.githubusercontent.com/render/math?math=serviceAvailability^{numberOfSynchronouslyCollaboratingServices})
 - A service can retry a request to a failed collaborator but this increases response time.
 
 ## Solution
