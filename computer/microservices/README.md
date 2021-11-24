@@ -37,21 +37,21 @@ Using [4+1 architectural view model](https://en.wikipedia.org/wiki/4%2B1_archite
 
 #### Maintaining data consistency
 
-- Aggregate
+- [[Aggregate]] [read more](aggregate.md))
 - [[Saga]] [read more](Saga.md)
 - [[Event sourcing]] [read more](event-sourcing.md)
 - [[Domain event]] [read more](domain-event.md)
 
 ### Testing
 
-- Consumer-driven contract test
-- Consumer-side contract test
-- Service Component test
+- [[Consumer-driven contract test]] [read more](consumer-driven-contract-test.md)
+- [[Consumer-side contract test]] [read more](consumer-side-contract-test.md)
+- [[Service Component test]] [read more](service-component-test.md)
 
 ### UI
 
-- Server-side page fragment composition
-- Client-side UI composition
+- [[Server-side page fragment composition]] [read more](server-side-page-fragment-composition.md)
+- [[Client-side UI composition]] [read more](client-side-ui-composition.md)
 
 ### Observability (part 1)
 
