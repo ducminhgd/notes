@@ -15,7 +15,7 @@ How to easily test that a service provides an API that its clients expect?
 
 ## Solution
 
-A test suite for a service that is written by the developers of another service that consumes it. The test suite verifies that the service meets the consuming service’s expectations.
+A test suite for a service that is written by the developers of another service that consumes it. The test suite verifies that the service meets the consuming service's expectations.
 
 ## Examples
 

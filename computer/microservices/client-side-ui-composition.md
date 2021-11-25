@@ -7,7 +7,7 @@ group: UI
 
 ## Context
 
-You have applied the Microservice architecture pattern. Services are developed by [business capability](https://microservices.io/patterns/decomposition/decompose-by-business-capability.html)/[subdomain](https://microservices.io/patterns/decomposition/decompose-by-subdomain.html)-oriented teams that are also responsible for the user experience. Some UI screens/pages display data from multiple service. Consider, for example, an Amazon-style product detail page, which displays numerous data items including:
+You have applied the [[Microservice architecture]] pattern. Services are developed by [business capability](https://microservices.io/patterns/decomposition/decompose-by-business-capability.html)/[subdomain](https://microservices.io/patterns/decomposition/decompose-by-subdomain.html)-oriented teams that are also responsible for the user experience. Some UI screens/pages display data from multiple service. Consider, for example, an Amazon-style product detail page, which displays numerous data items including:
 - Basic information about the book such as title, author, price, etc.
 - Your purchase history for the book
 - Availability

@@ -13,7 +13,7 @@ In addition to the build logic, you need to handle cross cutting concerns. Examp
 - Security - for example, REST APIs must be secured by requiring an [[Access Token]]
 - [[Externalized configuration]] - includes credentials, and network locations of external services such as databases and message brokers
 - [[Logging]] - configuring of a logging framework such as log4j or logback
-- [[Health check]] - a url that a monitoring service can “ping” to determine the health of the application
+- [[Health check]] - a url that a monitoring service can "ping" to determine the health of the application
 - [[Metrics]] - measurements that provide insight into what the application is doing and how it is performing
 - [[Distributed tracing]] - instrument services with code that assigns each external request an unique identifier that is passed between services.
 
@@ -21,7 +21,7 @@ As well as these generic cross-cutting concerns, there are also cross-cutting co
 
 It is common to spend one or two days, sometimes even longer, writing the build logic and implementing cross-cutting concerns. If you going to spend months or years developing a monolithic application then the upfront investment is insignificant. The situation is very different, however, if you are developing an application that has the [[microservice architecture]]. There are tens or hundreds of services. You will frequently create new services, each of which will only take days or weeks to develop. You cannot afford to spend a few days setting up every service. What is even worse is that in a [[microservice architecture]] there are additional cross-cutting concerns that you have to deal with including service registration and discovery, and circuit breakers for reliably handling partial failure.
 
-One solution is to create a [[Service Template]], which is a source code template that a developer can copy in order to quickly start developing a new service. The drawback, however, of a [[Service Template]] is that it’s a form of copy/paste programming: when the build logic and cross-cutting concerns logic needs to change, each service must be updated individually.
+One solution is to create a [[Service Template]], which is a source code template that a developer can copy in order to quickly start developing a new service. The drawback, however, of a [[Service Template]] is that it's a form of copy/paste programming: when the build logic and cross-cutting concerns logic needs to change, each service must be updated individually.
 
 ![](Service_template_limitations.png)
 
@@ -47,7 +47,7 @@ The [[Service Template]] is a sample service that uses the microservice chassis.
 
 Examples of frameworks that are the starting point for creating a microservice chassis:
 - Java
-  - Spring Boot and Spring Cloud
+  - [[Spring Boot]]  and Spring Cloud
   - Dropwizard
 - Go
   - Gizmo
@@ -63,7 +63,7 @@ One issue is that you need a microservice chassis for each programming language/
 ## Related patterns
 
 There are the following related patterns:
-- [[Service Template]] - a template for a service that developers can copy to create a new application. It’s either an alternative to the Microservice Chassis pattern; or it uses a Microservice Chassis and simply contains the code and configuration that doesn’t belong in the chassis
+- [[Service Template]] - a template for a service that developers can copy to create a new application. It's either an alternative to the Microservice Chassis pattern; or it uses a Microservice Chassis and simply contains the code and configuration that doesn't belong in the chassis
 - [[Microservices]] - this pattern motivates the need for the Microservice Chassis pattern
 - [[Self Registration]] - the microservice chassis is often responsible for registering the service with the service registry
 - [[Client-side discovery]] - the microservice chassis is often responsible for client-side service discovery

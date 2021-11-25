@@ -13,7 +13,7 @@ In addition to the build logic, you need to handle cross cutting concerns. Examp
 - [[Security]] - for example, REST APIs must be secured by requiring an [[Access Token]]
 - [[Externalized configuration]] - includes credentials, and network locations of external services such as databases and message brokers
 - [[Logging]] - configuring of a logging framework such as log4j or logback
-- [[Health check]] - a url that a monitoring service can “ping” to determine the health of the application
+- [[Health check]] - a url that a monitoring service can "ping" to determine the health of the application
 - [[Metrics]] - measurements that provide insight into what the application is doing and how it is performing
 - [[Distributed tracing]] - instrument services with code that assigns each external request an unique identifier that is passed between services.
 
@@ -49,7 +49,7 @@ This pattern has the following issues:
 
 ## Related patterns
 
-[[Microservice Chassis]] - it’s either an alternative to the service template pattern; or, perhaps more likely, the service template uses a Microservice Chassis and simply contains the code and configuration that doesn’t belong in the chassis.
+[[Microservice Chassis]] - it's either an alternative to the service template pattern; or, perhaps more likely, the service template uses a Microservice Chassis and simply contains the code and configuration that doesn't belong in the chassis.
 
 ## See also
 

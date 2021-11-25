@@ -18,7 +18,7 @@ How to publish messages/events into the *outbox* in the database to the message 
 
 ## Solution
 
-Publish messages by polling the database’s *outbox* table.
+Publish messages by polling the database's *outbox* table.
 
 ## Examples
 

@@ -10,11 +10,11 @@ subgroup: Maintaining data consistency
 
 A service command typically needs to update the database **and** send messages/events. For example, a service that participates in a [[saga]] needs to atomically update the database and sends messages/events. Similarly, a service that publishes a [[domain event]] must atomically update an [[aggregate]] and publish an event.
 
-A service must atomically update the database and send messages in order to avoid data inconsistencies and bugs. However, it is not viable to use a traditional distributed transaction (2PC) that spans the database and the message broker to atomically update the database and publish messages/events. The message broker might not support [[2PC]]. And even if does, it’s often undesirable to couple the service to both the database and the message.
+A service must atomically update the database and send messages in order to avoid data inconsistencies and bugs. However, it is not viable to use a traditional distributed transaction (2PC) that spans the database and the message broker to atomically update the database and publish messages/events. The message broker might not support [[2PC]]. And even if does, it's often undesirable to couple the service to both the database and the message.
 
-But without using 2PC, sending a message in the middle of a transaction is not reliable. There’s no guarantee that the transaction will commit. Similarly, if a service sends a message after committing the transaction there’s no guarantee that it won’t crash before sending the message.
+But without using 2PC, sending a message in the middle of a transaction is not reliable. There's no guarantee that the transaction will commit. Similarly, if a service sends a message after committing the transaction there's no guarantee that it won't crash before sending the message.
 
-In addition, messages must be sent to the message broker in the order they were sent by the service. They must usually be delivered to each consumer in the same order although that’s outside the scope of this pattern. For example, let’s suppose that an aggregate is updated by a series of transactions `T1`, `T2`, etc. This transactions might be performed by the same service instance or by different service instances. Each transaction publishes a corresponding event: `T1 -> E1`, `T2 -> E2`, etc. Since `T1` precedes `T2`, event `E1` must be published before `E2`.
+In addition, messages must be sent to the message broker in the order they were sent by the service. They must usually be delivered to each consumer in the same order although that's outside the scope of this pattern. For example, let's suppose that an aggregate is updated by a series of transactions `T1`, `T2`, etc. This transactions might be performed by the same service instance or by different service instances. Each transaction publishes a corresponding event: `T1 -> E1`, `T2 -> E2`, etc. Since `T1` precedes `T2`, event `E1` must be published before `E2`.
 
 ## Problem
 
@@ -28,15 +28,15 @@ How to reliably/atomically update the database and send messages/events?
 
 ## Solution
 
-A good solution to this problem is to use event sourcing. Event sourcing persists the state of a business entity such an Order or a Customer as a sequence of state-changing events. Whenever the state of a business entity changes, a new event is appended to the list of events. Since saving an event is a single operation, it is inherently atomic. The application reconstructs an entity’s current state by replaying the events.
+A good solution to this problem is to use event sourcing. Event sourcing persists the state of a business entity such an Order or a Customer as a sequence of state-changing events. Whenever the state of a business entity changes, a new event is appended to the list of events. Since saving an event is a single operation, it is inherently atomic. The application reconstructs an entity's current state by replaying the events.
 
-Applications persist events in an event store, which is a database of events. The store has an API for adding and retrieving an entity’s events. The event store also behaves like a message broker. It provides an API that enables services to subscribe to events. When a service saves an event in the event store, it is delivered to all interested subscribers.
+Applications persist events in an event store, which is a database of events. The store has an API for adding and retrieving an entity's events. The event store also behaves like a message broker. It provides an API that enables services to subscribe to events. When a service saves an event in the event store, it is delivered to all interested subscribers.
 
-Some entities, such as a Customer, can have a large number of events. In order to optimize loading, an application can periodically save a snapshot of an entity’s current state. To reconstruct the current state, the application finds the most recent snapshot and the events that have occurred since that snapshot. As a result, there are fewer events to replay.
+Some entities, such as a Customer, can have a large number of events. In order to optimize loading, an application can periodically save a snapshot of an entity's current state. To reconstruct the current state, the application finds the most recent snapshot and the events that have occurred since that snapshot. As a result, there are fewer events to replay.
 
 ## Example
 
-[Customers and Orders](https://github.com/eventuate-examples/eventuate-examples-java-customers-and-orders) is an example of an application that is built using Event Sourcing and [[CQRS]]. The application is written in Java, and uses Spring Boot. It is built using [Eventuate](http://eventuate.io/), which is an application platform based on event sourcing and [[CQRS]].
+[Customers and Orders](https://github.com/eventuate-examples/eventuate-examples-java-customers-and-orders) is an example of an application that is built using Event Sourcing and [[CQRS]]. The application is written in Java, and uses [[Spring Boot]] . It is built using [Eventuate](http://eventuate.io/), which is an application platform based on event sourcing and [[CQRS]].
 
 The following diagram shows how it persist orders.
 

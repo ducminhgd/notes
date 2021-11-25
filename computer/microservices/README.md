@@ -80,49 +80,48 @@ Using [4+1 architectural view model](https://en.wikipedia.org/wiki/4%2B1_archite
 
 #### Communication style
 
-- Messaging
-- Remote Procedure invocation
-- Domain-specific
+- [[Messaging]] [read more](messaging.md)
+- [[Remote Procedure invocation]] [read more](remote-procedure-invocation.md)
+- [[Domain-specific]] [read more](domain-specific.md)
 
 #### Reliability
 
-- Circuit Breaker
+- [[Circuit Breaker]] [read more](circuit-loader.md)
 
 #### Discovery (part 1)
 
-- Client-side discovery
-- Self registration
+- [[Client-side discovery]] [read more](client-side-discovery.md)
+- [[Self registration]] [read more](self-registration.md)
 
 ### Observability (part 2)
 
-- Distributed tracing
-- Health check API
-- Exception tracking
-- Log aggregation
-- Log deployments and changes
+- [[Distributed tracing]] [read more](distributed-tracing.md)
+- [[Health check API]] [read more](health-check-api.md)
+- [[Exception tracking]] [read more](exception-tracking.md)
+- [[Log aggregation]] [read more](log-aggregation.md)
+- [[Log deployments and changes]] [read more](log-deployments-and-changes.md)
 
 ## Infrastructure patterns
 
 ### Deployment
 
-- Multiple Services per host
-- Single Service per host
-- Serverless deployment
-- Service-per-Container
-- Service-per-VM
-- Service deployment platform
-- Service mesh
-- Sidecar
+- [[Multiple Services instance per host]] [read more](multiple-services-per-host.md)
+- [[Single Service instance per host]] [read more](single-service-per-host.md)
+- [[Serverless deployment]] [read more](serverless-deployment.md)
+- [[Service instance per Container]] [read more](service-instance-per-container.md)
+- [[Service instance per VM]] [read more](service-instance-per-vm.md)
+- [[Service deployment platform]] [read more](service-deployment-platform.md)
+- [[Service mesh]] [read more](service-mesh.md)
+- [[Sidecar]] [read more](sidecar.md)
 
 ### Communication patterns (part 2)
 
 #### Discovery (part 2)
 
-- Service registry
-- Server-side discovery
-- 3rd party registration
+- [[Service registry]] [read more](service-registry.md)
+- [[Server-side discovery]] [read more](server-side-discovery.md)
+- [[3rd party registration]] [read more](3rd-party-registration.md)
 
 #### External API
 
-- API gateway
-- Backends for Frontends
+- [[API gateway]] or [[Backends for Frontend]] [read more](api-gateway.md)
