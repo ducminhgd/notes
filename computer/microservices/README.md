@@ -55,28 +55,28 @@ Using [4+1 architectural view model](https://en.wikipedia.org/wiki/4%2B1_archite
 
 ### Observability (part 1)
 
-- Audit logging
-- Application metrics
+- [[Audit logging]] [read more](audit-logging.md)
+- [[Application metrics]] [read more](application-metrics.md)
 
 ## Application Infrastructure patterns
 
 ### Cross-cutting concerns
 
-- Service template
-- Microservice Chassis
-- Externalized configuration
+- [[Service template]] [read more](service-template.md)
+- [[Microservice Chassis]] [read more](microservice-chassis.md)
+- [[Externalized configuration]] [read more](externalized-configuration.md)
 
 ### Security
 
-- Access token
+- [[Access token]] [read more](access-token.md)
 
 ### Communication patterns (part 1)
 
 #### Transactional messaging
 
-- Transactional outbox
-- Transaction log tailling
-- Polling publisher
+- [[Transactional outbox]] [read more](transactional-outbox.md)
+- [[Transaction log tailling]] [read more](transactional-log-tailling.md)
+- [[Polling publisher]] [read more](polling-publisher.md)
 
 #### Communication style
 
