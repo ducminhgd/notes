@@ -1,3 +1,6 @@
+---
+type: architecuture
+---
 # Kubernetes
 
 ## kubectl
