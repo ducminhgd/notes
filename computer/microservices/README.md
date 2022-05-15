@@ -125,3 +125,7 @@ Using [4+1 architectural view model](https://en.wikipedia.org/wiki/4%2B1_archite
 #### External API
 
 - [[API gateway]] or [[Backends for Frontend]] [read more](api-gateway.md)
+
+## Other good reads
+
+- https://grokkingtechinterview.com/24-microservices-interview-questions-and-answers-to-land-that-job-4ae81ef34083
