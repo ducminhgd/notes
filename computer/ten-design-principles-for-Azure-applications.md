@@ -134,9 +134,58 @@ Robust [[logging]] and [[tracing]] are particularly important in cloud applicati
 
 > When possible, use platform as a service (PaaS) rather than infrastructure as a service (IaaS).
 
+[[IaaS]] offers access to computing resources, like servers, storage, and networks.
+
+[[PaaS]] provides a framework for developing and running apps.
+
+Advantages of PaaS over IaaS: PaaS options are easier to configure and administer; you do not need configure VMs.
+
 ### Use an identity service
 
 > Use an identity as a service (IDaaS) platform instead of building or operating your own.
+
+Identity is the foundation of modern security practices like [[zero trust]]. For most solutions, we strongly recommend using an [[identity as a service]] ([[IDaaS]]) platform, a fully managed identity solution, instead of building or operating your own. In this article, we describe the challenges of building or running your own identity system.
+
+#### Avoid storing credentials
+
+You should never store [[credential]]s in clear text, or even as encrypted data. You might consider cryptographically [[hash]]ing and [[salt]]ing credentials before storing them, which makes them more difficult to attack. However, even hashed and salted credentials are vulnerable to several types of attack.
+
+*Consider credential storage to be a liability, not an asset*.
+
+#### Implement identity and federation protocols
+
+Identity federation protocols are complex to establish, manage, and maintain, and they require specialist knowledge and experience. Read more [[Federated identity]] pattern: https://docs.microsoft.com/en-us/azure/architecture/patterns/federated-identity
+
+#### Adopt modern identity features
+
+Users expect an identity system to have a range of advanced features, including:
+- Passwordless authentication, which uses secure approaches to sign in that don't require users to enter credentials.
+- [[Single sign-on]] ([[SSO]]), which allows users to sign in by using an identity from their employer, school, or another organization.
+- [[Multifactor authentication]] ([[MFA]]), which prompts users to authenticate themselves in multiple ways. For example, a user might sign in by using a password and also by using an authenticator app on a mobile device or a code that's sent by email.
+- Auditing, which tracks every event that happens in the identity platform, including successful, failed, and aborted sign-in attempts. To forensically analyze a sign-in attempt later might require a detailed log.
+- Conditional access, which creates a risk profile around a sign-in attempt that's based on various factors. The factors might include the user's identity, the location of the sign-in attempt, previous sign-in activity, and the sensitivity of the data or application.
+- Just-in-time access control, which temporarily allows users to sign in based on an approval process, and then removes the authorization automatically.
+
+[[IDaaS]] platforms can also provide an improved set of security features that are based on the volume of sign-in requests that they receive. For example, the following features work best when there's a large number of customers who use a single identity platform:
+- Detection of risky sign-in events, such as sign-in attempts from botnets
+- Detection of impossible travel between a user's activities
+- Detection of common credentials, such as passwords that are frequently used by other users, which are therefore subject to a heightened risk of compromise
+- Use of machine learning techniques to classify sign-in attempts as valid or invalid
+- Monitoring of the so-called dark web for leaked credentials and preventing their exploitation
+- Ongoing monitoring of the threat landscape and the current vectors that attackers use
+
+#### Use a reliable, high-performance identity system
+
+An identity system must perform well and be able to scale to the level of growth that your system might experience
+
+#### Test your security and apply tight controls
+
+If you run an identity system, it's your responsibility to keep it secured. Examples of the controls you need to consider implementing include:
+- Periodic penetration testing, which requires specialized expertise.
+- Vetting of employees and anybody else with access to the system.
+- Tight control of all changes to your solution with all changes reviewed by experts.
+
+These controls are often expensive and difficult to implement.
 
 ## Use the best data store for the job
 
@@ -166,3 +215,4 @@ Robust [[logging]] and [[tracing]] are particularly important in cloud applicati
 12. https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/big-compute
 13. https://docs.microsoft.com/en-us/azure/architecture/patterns/pipes-and-filters
 14. https://docs.microsoft.com/en-us/azure/architecture/best-practices/monitoring
+15. https://docs.microsoft.com/en-us/azure/architecture/patterns/federated-identity
