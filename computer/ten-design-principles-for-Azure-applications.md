@@ -1,6 +1,9 @@
 ---
 type: architecture
-keywords: azure, principles
+keywords:
+    - architecture
+    - design
+    - Azure
 ---
 # Ten design principles for Azure applications
 
@@ -87,9 +90,45 @@ You can use a pattern such as [[Scheduler Agent Supervisor]] to coordinate betwe
 
 > Use partitioning to work around database, network, and compute limits.
 
+There are many ways to [[partition]] a system, such as:
+- Partition a database to avoid limits on database size, data [[I/O]], or number of [[concurrent]] sessions.
+- Partition a queue or message bus to avoid limits on the number of requests or the number of [[concurrent]] connections.
+- Partition an App Service web app to avoid limits on the number of instances per App Service plan.
+
+A database can be partitioned *horizontally*, *vertically*, or *functionally*.
+- In horizontal partitioning, also called sharding, each partition holds data for a subset of the total data set. The partitions share the same data schema. For example, customers whose names start with A–M go into one partition, N–Z into another partition.
+- In vertical partitioning, each partition holds a subset of the fields for the items in the data store. For example, put frequently accessed fields in one partition, and less frequently accessed fields in another.
+- In functional partitioning, data is partitioned according to how it is used by each bounded context in the system. For example, store invoice data in one partition and product inventory data in another. The schemas are independent.
+
+### Recommendations
+
+- **Partition different parts of the application**. Databases are one obvious candidate for partitioning, but also consider storage, cache, queues, and compute instances.
+- **Design the partition key to avoid hotspots**. If you partition a database, but one shard still gets the majority of the requests, then you haven't solved your problem. Ideally, load gets distributed evenly across all the partitions. The same principle applies when partitioning a message queue. Pick a partition key that leads to an even distribution of messages across the set of queues.
+- **Partition around Azure subscription and service limits**. Individual components and services have limits, but there are also limits for subscriptions and resource groups. For very large applications, you might need to partition around those limits.
+- **Partition at different levels**. Consider a database server deployed on a VM. The VM has a VHD that is backed by Azure Storage. The storage account belongs to an Azure subscription. Notice that each step in the hierarchy has limits. The database server may have a connection pool limit. VMs have CPU and network limits. Storage has IOPS limits. The subscription has limits on the number of VM cores. Generally, it's easier to partition lower in the hierarchy. Only large applications should need to partition at the subscription level.
+
 ## Design for operations
 
 > Design your application so that the operations team has the tools they need.
+
+Some of the important functions of the operations team include:
+- [[Deployment]]
+- [[Monitoring]]
+- [[Escalation]]
+- [[Incident]] response
+- [[Security]] auditing
+
+Robust [[logging]] and [[tracing]] are particularly important in cloud applications. Involve the operations team in design and planning, to ensure the application gives them the data and insight they need to be successful.
+
+### Recommendations
+
+- **Make all things observable**. Once a solution is deployed and running, logs and traces are your primary insight into the system. *Tracing* records a path through the system, and is useful to pinpoint bottlenecks, performance issues, and failure points. *Logging* captures individual events such as application state changes, errors, and exceptions
+- **Instrument for monitoring**. Monitoring gives insight into how well (or poorly) an application is performing, in terms of availability, performance, and system health. It should be as close to real-time as possible, so that the operations staff can react to issues quickly. Ideally, monitoring can help avert problems before they lead to a critical failure.
+- **Instrument for root cause analysis**. Root cause analysis is the process of finding the underlying cause of failures. It occurs after a failure has already happened.
+- **Use distributed tracing**. Use a distributed tracing system that is designed for concurrency, asynchrony, and cloud scale. Traces should include a [[correlation ID]] that flows across service boundaries.
+- **Standardize logs and metrics**. Define a common schema for log aggregation.
+- **Automate management tasks**, including provisioning, deployment, and monitoring. Automating a task makes it repeatable and less prone to human errors.
+- **Treat configuration as code**. Check configuration files into a version control system, so that you can track and version your changes, and roll back if needed.
 
 ## Use managed services
 
@@ -126,3 +165,4 @@ You can use a pattern such as [[Scheduler Agent Supervisor]] to coordinate betwe
 11. https://docs.microsoft.com/en-us/azure/cosmos-db/sql/database-transactions-optimistic-concurrency
 12. https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/big-compute
 13. https://docs.microsoft.com/en-us/azure/architecture/patterns/pipes-and-filters
+14. https://docs.microsoft.com/en-us/azure/architecture/best-practices/monitoring
