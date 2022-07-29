@@ -191,13 +191,72 @@ These controls are often expensive and difficult to implement.
 
 > Pick the storage technology that is the best fit for your data and how it will be used.
 
+Relational [[SQL]] databases come with costs:
+- Queries can require expensive joins.
+- You need to normalize the data and restructure it for schema on write.
+- Lock contention can affect performance.
+
+### Alternatives to relational databases
+
+- Key/value stores
+- Document databases
+- Search engine databases
+- Time series databases
+- Column family databases
+- Graph databases
+
+### Recommendations
+
+- Don't use a relational database for everything. Consider other data stores when it's appropriate.
+- Remember that data includes more than just persisted application data. It also includes application logs, events, messages, and caches.
+- Embrace [[polyglot]] persistence, or solutions that use a mix of data store technologies.
+- Consider the type of data that you have. For example:
+  - Put transactional data into a [[SQL]] database.
+  - Store [[JSON]] documents in a [[document database]].
+  - Use a time series data base for [[telemetry]].
+  - Put application logs into [[Azure Cognitive Search]].
+  - Choose [[Azure Blob Storage]] for [[blobs]].
+- Prefer availability over (strong) consistency. Base on [[CAP theorem]], a distributed system can implement only two of the three features ([[Consistency]], [[Availability]], and [[Partition Tolerance]]) at any one time.
+- Consider the skill set of your development team. There are advantages to using polyglot persistence, but it's possible to go overboard. The team needs to understand how to:
+  - Optimize queries.
+  - Tune for performance.
+  - Work with appropriate usage patterns.
+- Use [[compensating transactions]]. A side effect of polyglot persistence is that a single transaction might write data to multiple stores. If something fails, use [[compensating transactions]] to undo any steps that already finished.
+- Look at [[bounded contexts]], a concept from [[domain-driven design]]. A bounded context defines which parts of the domain the model applies to. Ideally, a bounded context maps to a subdomain of the business domain.
+
 ## Design for evolution
 
 > All successful applications change over time. An evolutionary design is key for continuous innovation.
 
+All successful applications change over time, whether to fix bugs, add new features, bring in new technologies, or make existing systems more scalable and resilient. If all the parts of an application are tightly coupled, it becomes very hard to introduce changes into the system.
+
+[[Microservices]] are becoming a popular way to achieve an evolutionary design, because they address many of the considerations listed here.
+
+### Recommendations
+
+- **Enforce high cohesion and loose coupling**. A service is cohesive if it provides functionality that logically belongs together. Services are loosely coupled if you can change one service without changing the other.
+- **Encapsulate domain knowledge** that falls under a specific service's resonpsibility.
+- **Use asynchronous messaging**. With a pub/sub architecture, the producer may not even know who is consuming the message. New services can easily consume the messages without any modifications to the producer.
+- **Don't build domain knowledge into a gateway**
+- **Expose open interfaces**. Avoid creating custom translation layers that sit between services. Instead, a service should expose an API with a well-defined API contract
+- **Design and test against service contracts**. When services expose well-defined APIs, you can develop and test against those APIs.
+- **Abstract infrastructure away from domain logic**. Don't let domain logic get mixed up with infrastructure-related functionality, such as messaging or persistence. Otherwise, changes in the domain logic will require updates to the infrastructure layers and vice versa.
+- **Offload cross-cutting concerns to a separate service**
+- **Deploy services independently**
+
 ## Build for the needs of business
 
 > Every design decision must be justified by a business requirement.
+
+### Recommendations
+
+- **Define business objectives**, such as [[recovery time objective]] (RTO), [[recovery point objective]] (RPO), and [[maximum tolerable outage]] (MTO). These numbers should inform decisions about the architecture
+- **Document [[service level agreements]] ([[SLA]]s) and [[service level objectives]] ([[SLO]]s)**, including availability and performance metrics.
+- **Model applications for your business domain**. Analyze the business requirements, and use these requirements to model the solution. Consider using a [[domain-driven design]] ([[DDD]]) approach to create domain models that reflect your business processes and use cases.
+- **Define functional and nonfunctional requirements**. Functional requirements determine whether an application performs its task. Nonfunctional requirements determine how well the application performs.
+- **Decompose workloads**. Workload in this context means a discrete capability or computing task that can logically be separated from other tasks. Different workloads might have different requirements for availability, scalability, data consistency, and disaster recovery.
+- **Plan for growth**.
+- **Manage costs**
 
 ## Read more
 
@@ -216,3 +275,4 @@ These controls are often expensive and difficult to implement.
 13. https://docs.microsoft.com/en-us/azure/architecture/patterns/pipes-and-filters
 14. https://docs.microsoft.com/en-us/azure/architecture/best-practices/monitoring
 15. https://docs.microsoft.com/en-us/azure/architecture/patterns/federated-identity
+16. https://docs.microsoft.com/en-us/azure/architecture/guide/technology-choices/data-store-overview
