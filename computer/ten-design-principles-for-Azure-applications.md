@@ -260,19 +260,18 @@ All successful applications change over time, whether to fix bugs, add new featu
 
 ## Read more
 
-1. https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/
-2. https://docs.microsoft.com/en-us/azure/architecture/best-practices/transient-faults
-3. https://docs.microsoft.com/en-us/azure/architecture/patterns/retry
-4. https://docs.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling
-5. https://docs.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction
-6. https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling
-7. https://docs.microsoft.com/en-us/azure/architecture/patterns/leader-election
-8. https://docs.microsoft.com/en-us/azure/architecture/framework/resiliency/principles
-9. https://docs.microsoft.com/en-us/azure/architecture/patterns/scheduler-agent-supervisor
-10. https://docs.microsoft.com/en-us/dynamicsax-2012/developer/optimistic-concurrency-control
-11. https://docs.microsoft.com/en-us/azure/cosmos-db/sql/database-transactions-optimistic-concurrency
-12. https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/big-compute
-13. https://docs.microsoft.com/en-us/azure/architecture/patterns/pipes-and-filters
-14. https://docs.microsoft.com/en-us/azure/architecture/best-practices/monitoring
-15. https://docs.microsoft.com/en-us/azure/architecture/patterns/federated-identity
-16. https://docs.microsoft.com/en-us/azure/architecture/guide/technology-choices/data-store-overview
+1. https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles
+2. https://docs.microsoft.com/en-us/azure/architecture/patterns/retry
+3. https://docs.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling
+4. https://docs.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction
+5. https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling
+6. https://docs.microsoft.com/en-us/azure/architecture/patterns/leader-election
+7. https://docs.microsoft.com/en-us/azure/architecture/framework/resiliency/principles
+8. https://docs.microsoft.com/en-us/azure/architecture/patterns/scheduler-agent-supervisor
+9.  https://docs.microsoft.com/en-us/dynamicsax-2012/developer/optimistic-concurrency-control
+10. https://docs.microsoft.com/en-us/azure/cosmos-db/sql/database-transactions-optimistic-concurrency
+11. https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/big-compute
+12. https://docs.microsoft.com/en-us/azure/architecture/patterns/pipes-and-filters
+13. https://docs.microsoft.com/en-us/azure/architecture/best-practices/monitoring
+14. https://docs.microsoft.com/en-us/azure/architecture/patterns/federated-identity
+15. https://docs.microsoft.com/en-us/azure/architecture/guide/technology-choices/data-store-overview
