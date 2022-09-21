@@ -8,7 +8,7 @@ group: video
 
 [[Frame]]: a static picture on the screen.
 
-[[Frame size]]: resolution of a frame, unit is bit.
+[[Frame size]]: resolution of a frame, unit is pixel.
 
 [[Frame rate]]: the number of frames presented on screen per second.
 
@@ -30,7 +30,7 @@ Containers: Often called file formats such as MP4, MOV, AVI, WMV, MKV, and WebM.
 
 ## Formulas
 
-`File size` = `Bitrate` * `duration` * `compress ratio`
+`File size` = `Bitrate of bot Video and Audio`/8 * `duration` * `compress ratio`
 
 `Bitrate` = `Frame size` * `Frames rate`
 
