@@ -85,7 +85,7 @@ git-sync() {
 
 ```shell
 trivyscan() {
-    docker run --rm aquasec/trivy:latest image --no-progress --exit-code 1 --no-progress --severity CRITICAL $1
+    docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image --no-progress --exit-code 1 --no-progress --severity CRITICAL $1
 }
 ```
 
