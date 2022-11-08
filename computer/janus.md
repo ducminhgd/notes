@@ -8,7 +8,7 @@ keywors:
 ---
 # Janus
 
-Janus is a WebRTC Server
+Janus is a [[WebRTC]] Server
 
 ## Installation
 
