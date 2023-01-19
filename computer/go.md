@@ -257,3 +257,5 @@ var gcArchSizes = map[string]*StdSizes{
 ```
 
 This may relevant to [[cache line]]
+
+Read more: [A go alignment](https://go-review.googlesource.com/c/go/+/414214)

@@ -33,3 +33,4 @@ Valid and dirty bits are maintained per sector, which means that not every secto
 
 1. [https://open-cas.github.io/cache_line.html](https://open-cas.github.io/cache_line.html)
 2. [[False sharing]]
+3. [A go alignment](https://go-review.googlesource.com/c/go/+/414214)
