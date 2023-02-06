@@ -8,6 +8,7 @@ The programming language.
 ## Arrays, Slices and Strings
 
 It took a year to answer these questions to design [[Array]]s, [[Slice]]s in Go:
+
 - fixed-size or variable-size?
 - is the size part of the type?
 - what do multidimensional arrays look like?
@@ -128,6 +129,7 @@ for v, ok := <- c; ok ; v, ok = <- c {
 
 - Go does not have reference variables
 - Maps and channels are not references. If they were this program would print `false`.
+
   ```go
   package main
 
@@ -143,13 +145,14 @@ for v, ok := <- c; ok ; v, ok = <- c {
         fmt.Println(m == nil)
     }
   ```
+
 - When you write the statement `m := make(map[int]int)` the compiler replaces it with a call to `runtime.makemap`.
   > // makemap implements a Go map creation make(map[k]v, hint)\
   > // If the compiler has determined that the map or the first bucket\
   > // can be created on the stack, h and/or bucket may be non-nil.\
   > // If h != nil, the map can be created directly in h.\
   > // If bucket != nil, bucket can be used as the first bucket.\
-  > func makemap(t *maptype, hint int64, h *hmap, bucket unsafe.Pointer) *hmap
+  > func makemap(t *maptype, hint int64, h*hmap, bucket unsafe.Pointer) *hmap
   
   As you see, the type of the value returned from `runtime.makemap` is a pointer to a `runtime.hmap` structure. We cannot see this from normal Go code, but we can confirm that a map value is the same size as a [[uintptr]]–one machine word.
 
@@ -220,10 +223,39 @@ for v, ok := <- c; ok ; v, ok = <- c {
 From Go 1.19, `Bool`, `Int32`, `Int64`, `Uint32`, `Uint64`, `Uintptr` and `Pointer` are new atomic types under `sync/atomic`. From [Go docs](https://docs.studygolang.com/pkg/sync/atomic/):
 
 > Package atomic provides low-level atomic memory primitives useful for implementing synchronization algorithms.
-> 
+>
 > These functions require great care to be used correctly. Except for special, low-level applications, synchronization is better done with channels or the facilities of the sync package. **Share memory by communicating; don't communicate by sharing memory**.
 
 ## Go vs other languages
 
 - [[Rust]] will almost always beat Go in run-time benchmarks due to its fine-grained control over how threads behave and how resources are shared between threads. [Link](https://www.getclockwise.com/blog/rust-vs-go)
 
+## Word size and alignment
+
+```go
+// common architecture word sizes and alignments
+var gcArchSizes = map[string]*StdSizes{
+    "386":      {4, 4},
+    "amd64":    {8, 8},
+    "amd64p32": {4, 8},
+    "arm":      {4, 4},
+    "arm64":    {8, 8},
+    "loong64":  {8, 8},
+    "mips":     {4, 4},
+    "mipsle":   {4, 4},
+    "mips64":   {8, 8},
+    "mips64le": {8, 8},
+    "ppc64":    {8, 8},
+    "ppc64le":  {8, 8},
+    "riscv64":  {8, 8},
+    "s390x":    {8, 8},
+    "sparc64":  {8, 8},
+    "wasm":     {8, 8},
+    // When adding more architectures here,
+    // update the doc string of SizesFor below.
+}
+```
+
+This may relevant to [[cache line]]
+
+Read more: [A go alignment](https://go-review.googlesource.com/c/go/+/414214)
