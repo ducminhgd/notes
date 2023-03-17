@@ -259,3 +259,17 @@ var gcArchSizes = map[string]*StdSizes{
 This may relevant to [[cache line]]
 
 Read more: [A go alignment](https://go-review.googlesource.com/c/go/+/414214)
+
+## Variables allocated
+
+Go compilers will allocate variables that are local to a function in that function’s [[stack]] frame. However, if the compiler cannot prove that the variable is not referenced after the function returns, then the compiler must allocate the variable on the garbage-collected [[heap]] to avoid dangling pointer errors. Also, if a local variable is very large, it might make more sense to store it on the heap rather than the stack.
+
+If a variable has its address taken, that variable is a candidate for allocation on the heap. However, a basic escape analysis recognizes some cases when such variables will not live past the return from the function and can reside on the stack.
+
+Collecting stack memory blocks is also much cheaper than collecting heap memory blocks. In fact, stack memory blocks don't need to be collected. The stack of a goroutine could be actually viewed as a single memory block, and it will be collected as a whole when the goroutine exits.
+
+## Read more
+
+1. [Length and capacity](https://riptutorial.com/go/example/3561/length-and-capacity)
+2. [Understanding Allocations in Go](https://medium.com/eureka-engineering/understanding-allocations-in-go-stack-heap-memory-9a2631b5035d)
+3. [Memory Allocations](https://go101.org/optimizations/0.3-memory-allocations.html)
