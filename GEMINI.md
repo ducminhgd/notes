@@ -1,0 +1,1 @@
+Gemini, always read the `.ai` directory.
